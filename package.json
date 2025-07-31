@@ -3,17 +3,31 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/erick-andrade1/hex-and-clean-arch.git"
   },
-  "author": "",
+  "author": "Erick Veríssimo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/erick-andrade1/hex-and-clean-arch/issues"
-  },
   "homepage": "https://github.com/erick-andrade1/hex-and-clean-arch#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.1.0",
+    "@types/uuid": "^10.0.0",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  }
 }

@@ -1,0 +1,8 @@
+.env
+logs
+dist
+node_modules
+coverage
+
+.npm-cache
+uploads
