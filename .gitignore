@@ -6,3 +6,4 @@ coverage
 
 .npm-cache
 uploads
+/generated/prisma

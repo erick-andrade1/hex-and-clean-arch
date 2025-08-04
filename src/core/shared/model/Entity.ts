@@ -1,23 +1,23 @@
 export interface EntityProps {
   id?: string;
-  createdAt: Date;
-  updatedAt: Date | null;
-  deletedAt: Date | null;
-  isDeleted: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  isDeleted?: boolean;
 }
 
-export class Entity implements EntityProps {
+export abstract class Entity<T extends EntityProps = any> {
   readonly id?: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date | null;
-  readonly deletedAt: Date | null;
-  readonly isDeleted: boolean;
+  readonly createdAt?: Date;
+  readonly updatedAt?: Date;
+  readonly deletedAt?: Date;
+  readonly isDeleted?: boolean;
 
-  constructor(props: EntityProps) {
-    this.id = props.id;
-    this.createdAt = props.createdAt;
-    this.updatedAt = props.updatedAt;
-    this.deletedAt = props.deletedAt;
+  constructor(props: T) {
+    this.id = props.id ?? null;
+    this.createdAt = props.createdAt ?? null;
+    this.updatedAt = props.updatedAt ?? null;
+    this.deletedAt = props.deletedAt ?? null;
     this.isDeleted = props.isDeleted ?? false;
   }
 }
