@@ -1,8 +1,8 @@
-import { CryptoProvider } from '../../shared';
+import { CryptoProvider, UseCase } from '../../shared';
 import { User, UserProps } from '../model/User';
 import { UserRepository } from '../provider';
 
-export class CreateUserUseCase {
+export class CreateUserUseCase implements UseCase<UserProps, User> {
   constructor(
     private readonly repository: UserRepository,
     private readonly cryptoProvider: CryptoProvider,

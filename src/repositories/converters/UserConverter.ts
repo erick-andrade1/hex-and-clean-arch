@@ -3,12 +3,12 @@ import { Prisma, User as UserDb } from '../../../generated/prisma';
 
 export class UserConverter {
   static fromDb(user: UserDb): User {
-    return {
+    return new User({
       id: user.id.toString(),
       name: user.name,
       email: user.email,
       password: user.password,
-    };
+    });
   }
 
   static toDb(user: User): Prisma.UserCreateInput {

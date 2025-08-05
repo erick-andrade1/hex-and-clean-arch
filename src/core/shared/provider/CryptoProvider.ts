@@ -1,4 +1,4 @@
 export interface CryptoProvider {
-  hash(data: string): string;
-  compare(data: string, hash: string): boolean;
+  hash(password: string): string;
+  compare(password: string, hash: string): boolean;
 }

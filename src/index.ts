@@ -13,13 +13,21 @@ app.listen(port, () => {
 });
 
 // --------------- Rotas Abertas ---------------
-import { CreateUserUseCase } from './core';
-import { CreateUserController } from './controllers';
+import { CreateUserUseCase, LoginUseCase } from './core';
+import { CreateUserController, LoginController } from './controllers';
 import { UserRepositoryPrisma } from './repositories';
 import { CryptoProviderImplementation } from './externals';
 
-const userRepository = new UserRepositoryPrisma();
+// --------------- PROVIDERS ---------------
 const cryptoProvider = new CryptoProviderImplementation();
-const createUserUseCase = new CreateUserUseCase(userRepository, cryptoProvider);
 
+// --------------- REPOS ---------------
+const userRepository = new UserRepositoryPrisma();
+
+// --------------- USE CASES ---------------
+const createUserUseCase = new CreateUserUseCase(userRepository, cryptoProvider);
+const loginUseCase = new LoginUseCase(userRepository, cryptoProvider);
+
+// --------------- DECLARATIONS ---------------
 new CreateUserController(app, createUserUseCase);
+new LoginController(app, loginUseCase);
