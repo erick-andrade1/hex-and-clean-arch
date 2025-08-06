@@ -1,4 +1,4 @@
-import { CryptoProvider, Errors, UseCase } from '../../shared';
+import { CryptoProvider, Errors, TokenProvider, UseCase } from '../../shared';
 import { UserRepository } from '../../user';
 import { LoginInput, LoginOutput } from '../dto';
 
@@ -6,6 +6,7 @@ export class LoginUseCase implements UseCase<LoginInput, LoginOutput> {
   constructor(
     private readonly repository: UserRepository,
     private readonly cryptoProvider: CryptoProvider,
+    private readonly tokenProvider: TokenProvider,
   ) {}
 
   async execute(input: LoginInput): Promise<LoginOutput> {
@@ -26,7 +27,7 @@ export class LoginUseCase implements UseCase<LoginInput, LoginOutput> {
 
     return {
       user: user,
-      token: '',
+      token: this.tokenProvider.generateToken(user.id),
     };
   }
 }

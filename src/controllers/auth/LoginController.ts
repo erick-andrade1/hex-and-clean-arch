@@ -1,5 +1,6 @@
 import { Express } from 'express';
-import { LoginUseCase } from 'core';
+import { LoginUseCase } from '../../core';
+import { createUserList } from '../../factories';
 
 export class LoginController {
   constructor(
@@ -13,7 +14,10 @@ export class LoginController {
           email: body.email,
           password: body.password,
         });
-        res.status(200).json(result);
+        res.status(200).json({
+          user: createUserList(result.user),
+          token: result.token,
+        });
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import { createRoutes } from './routes';
 
 const port = process.env.PORT || 3000;
 
@@ -12,22 +13,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// --------------- Rotas Abertas ---------------
-import { CreateUserUseCase, LoginUseCase } from './core';
-import { CreateUserController, LoginController } from './controllers';
-import { UserRepositoryPrisma } from './repositories';
-import { CryptoProviderImplementation } from './externals';
-
-// --------------- PROVIDERS ---------------
-const cryptoProvider = new CryptoProviderImplementation();
-
-// --------------- REPOS ---------------
-const userRepository = new UserRepositoryPrisma();
-
-// --------------- USE CASES ---------------
-const createUserUseCase = new CreateUserUseCase(userRepository, cryptoProvider);
-const loginUseCase = new LoginUseCase(userRepository, cryptoProvider);
-
-// --------------- DECLARATIONS ---------------
-new CreateUserController(app, createUserUseCase);
-new LoginController(app, loginUseCase);
+createRoutes(app);

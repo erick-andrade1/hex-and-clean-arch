@@ -15,9 +15,15 @@ export abstract class Entity<T extends EntityProps = any> {
 
   constructor(props: T) {
     this.id = props.id ?? null;
-    this.createdAt = props.createdAt ?? null;
-    this.updatedAt = props.updatedAt ?? null;
+    this.createdAt = props.createdAt ?? new Date();
+    this.updatedAt = props.updatedAt ?? new Date();
     this.deletedAt = props.deletedAt ?? null;
     this.isDeleted = props.isDeleted ?? false;
+  }
+
+  copyWith(props: Partial<T>) {
+    Object.assign(this, props);
+
+    return this;
   }
 }
